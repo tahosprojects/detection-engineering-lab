@@ -4,8 +4,8 @@
 A cloud-native detection engineering project focused on building an end-to-end security pipeline in AWS. The objective was to emulate real-world adversary behavior and engineer custom detections using Infrastructure as Code (IaC) and portable detection standards (Sigma).
 
 ## Architecture
-- **Infrastructure**: Provisioned entirely via **Terraform** for reproducible, zero-dollar budget deployment[cite: 3].
-- **Pipeline**: CloudTrail logs -> S3 bucket -> SQS queue -> Splunk Enterprise[cite: 3].
+- **Infrastructure**: Provisioned entirely via **Terraform** for reproducible, zero-dollar budget deployment.
+- **Pipeline**: CloudTrail logs → S3 bucket → SQS queue → Splunk Enterprise[cite: 3].
 - **Decoupling**: Used an SQS queue between S3 and Splunk to ensure log delivery resilience and prevent data loss during pipeline outages[cite: 3].
 
 ## Adversary Emulation
@@ -29,9 +29,3 @@ Automated triage using a custom Python script that leverages `boto3` and `reques
 ## Key Lessons
 - **Behavior over Identity**: Detections are anchored on behavioral patterns (e.g., volume/variety of API calls) rather than static identity assumptions, effectively catching compromised administrative accounts[cite: 3].
 - **Resilience**: Leveraging SQS/DLQ structures mirrors enterprise SOC ingestion pipelines, ensuring high availability of telemetry data[cite: 3].
-
-## Repository Contents
-- `/terraform`: AWS infrastructure configuration files.
-- `/sigma-rules`: Detection logic in YAML format.
-- `/spl-conversions`: Compiled detection queries for Splunk.
-- `/scripts`: Python-based IP enrichment and alerting automation.
